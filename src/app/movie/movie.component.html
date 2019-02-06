@@ -1,0 +1,28 @@
+<mat-form-field class="example-full-width">
+  <input matInput placeholder="specify show name" [(ngModel)]="searchtext" (change)="searchMovies()">
+</mat-form-field>  
+
+<div>
+  Total Results: {{movieSearchResult.totalResults}}
+</div>
+
+<mat-grid-list cols="4" rowHeight="100px" rowHeight="800px">
+        <mat-grid-tile *ngFor="let movie of movieSearchResult.Search">
+  <mat-card style="max-width:400px;max-height:500px;min-height:500px">
+    <mat-card-header>
+      <div mat-card-avatar>{{movie.Title}}</div>
+      <mat-card-title>{{movie.Title}}</mat-card-title>
+      <mat-card-subtitle>{{movie.Year}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="{{movie.Poster}}" alt="{{movie.Title}}">
+    <mat-card-content>
+      <p>
+        {{movie.Title}}-{{movie.Year}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="showDetails(movie.imdbID)">Details</button>
+    </mat-card-actions>
+  </mat-card>
+</mat-grid-tile>
+</mat-grid-list>
